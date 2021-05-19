@@ -33,3 +33,16 @@
 .result-block-container .result-block {
   opacity: 1;
 }
+
+.samples-popover {
+  width: 100%;
+}
+
+/* Overrides */
+.ant-popover {
+  z-index: 999;
+}
+
+.ant-popover-inner-content {
+  white-space: pre-wrap;
+}

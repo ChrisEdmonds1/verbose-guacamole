@@ -16,9 +16,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true
   },
   "include": [
-    "src"
+    "./src/**/*.ts"
   ]
 }
