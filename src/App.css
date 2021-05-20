@@ -38,6 +38,14 @@
   width: 100%;
 }
 
+tr.drop-over-downward td {
+  border-bottom: 2px dashed #1890ff;
+}
+
+tr.drop-over-upward td {
+  border-top: 2px dashed #1890ff;
+}
+
 /* Overrides */
 .ant-popover {
   z-index: 999;
