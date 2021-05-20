@@ -1,33 +1,41 @@
-import React from "react"
-import { Popover, Select } from 'antd'
-
-import type { Columns } from '../Home'
-
-interface Props { 
-  options: Columns[];
-};
+import { Popover, Select } from 'antd';
+import React from 'react';
+import type { Columns } from '../Home';
 
 const { Option } = Select
+
+interface AddFilterProps { 
+  options: Columns[];
+  rowsDispatch: any;
+};
 
 const formatSampleData = (sample: []) => {
   const shortenedSamples: string[] = sample.map((item: string) => {
     if (item.length >= 100) {
-      return `${item.substring(0, 50)}...`
+      return `${item.substring(0, 50)}...`;
     }
-    return item
+    return item;
   })
-  return shortenedSamples.join('\n')
-}
+  return shortenedSamples.join('\n');
+};
 
-const AddFilter: React.FC<Props> = ({ options }) => {
+const AddFilter: React.FC<AddFilterProps> = ({ options, rowsDispatch }) => {
   return (
-    <Select placeholder="Add filter" value="Add filter" showArrow={false} style={{ width: 120 }}>
+    <Select 
+      placeholder="Add filter"
+      value="Add filter"
+      onSelect={(optionValue) => rowsDispatch({
+        type: 'ADD_ROW_WITH_NAME',
+        name: optionValue,
+      })}
+      showArrow={false}
+      style={{ width: 120 }}
+    >
       {options && options.map((option: { sampleHeader: string, sample: [] }) => {
         const { sampleHeader, sample } = option
-        console.log('........',sampleHeader)
         return (
-            <Option value={sampleHeader}>
-              <Popover className="samples-popover" key={sampleHeader} placement="right" title="Sample data" content={formatSampleData(sample)}>
+            <Option key={sampleHeader} value={sampleHeader}>
+              <Popover className="samples-popover" placement="right" title="Sample data" content={formatSampleData(sample)}>
                 <div>
                   {sampleHeader}
                 </div>
@@ -38,6 +46,6 @@ const AddFilter: React.FC<Props> = ({ options }) => {
       })}
     </Select>
   )
-}
+};
 
-export default AddFilter
+export default AddFilter;
